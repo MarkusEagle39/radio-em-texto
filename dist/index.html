@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f7f2" />
+    <meta name="description" content="Acompanhe o rádio com os olhos. Um piloto de legendas automáticas em português para rádios de Campinas." />
+    <title>Rádio em Texto — O rádio também é para ler.</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Fraunces:opsz,wght@9..144,400;9..144,450;9..144,500;9..144,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#reader-panel">Ir para as legendas</a>
+    <header class="site-header page-width">
+      <a class="brand" href="./" aria-label="Rádio em Texto, página inicial">
+        <svg class="brand-icon" viewBox="0 0 42 42" fill="none" aria-hidden="true"><path d="M9 6h24a5 5 0 0 1 5 5v19a5 5 0 0 1-5 5H18l-9 6v-6a5 5 0 0 1-5-5V11a5 5 0 0 1 5-5Z" fill="currentColor"/><path d="M19 15.5a6 6 0 1 0 0 10m13-10a6 6 0 1 0 0 10" stroke="#f7f7f2" stroke-width="2.8" stroke-linecap="round"/></svg>
+        <span>rádio em texto<span class="brand-period">.</span></span>
+      </a>
+      <div class="header-actions">
+        <span class="location-pill"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15.5 8c0 4-5.5 8.5-5.5 8.5S4.5 12 4.5 8a5.5 5.5 0 1 1 11 0Z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="8" r="1.8" stroke="currentColor" stroke-width="1.5"/></svg>Campinas, SP</span>
+        <button id="help-btn" class="text-button" type="button">Como funciona <span aria-hidden="true">↗</span></button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero page-width" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="tiny-square" aria-hidden="true"></span> PILOTO CAMPINAS</p>
+          <h1 id="hero-title">O rádio também<br />é para <em>ler.</em></h1>
+          <p class="hero-description">Notícias, conversas e histórias. O que passa no rádio,<br class="desktop-break" /> agora pode chegar até você em palavras.</p>
+        </div>
+        <div class="hero-aside" aria-hidden="true">
+          <div class="visual-signal"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <span class="signal-arrow">↗</span>
+          <div class="visual-words"><span></span><span></span><span></span></div>
+          <p>MAIS ACESSO. MAIS CONEXÃO.</p>
+        </div>
+      </section>
+
+      <section class="radio-workspace page-width" aria-label="Rádios de Campinas e região com legendas">
+        <aside class="stations-panel" aria-labelledby="stations-heading">
+          <div class="section-heading"><h2 id="stations-heading">Escolha sua rádio</h2><span class="station-total">04 RÁDIOS</span></div>
+          <p class="sidebar-description">Campinas e região. Muitas vozes.</p>
+          <div class="station-list">
+            <button class="station-card is-active" data-station="cbn" aria-pressed="true" type="button">
+              <span class="station-card-top"><span class="station-monogram cbn-monogram" aria-hidden="true">CBN</span><span class="selection-mark" aria-hidden="true">✓</span></span>
+              <span class="station-name">CBN Campinas</span>
+              <span class="station-card-detail">99,1 FM <span aria-hidden="true">·</span> Jornalismo</span>
+              <span class="station-card-bottom">Notícias e entrevistas <span aria-hidden="true">↗</span></span>
+            </button>
+            <button class="station-card" data-station="bandeirantes" aria-pressed="false" type="button">
+              <span class="station-card-top"><span class="station-monogram band-monogram" aria-hidden="true"><svg viewBox="0 0 42 25" fill="none"><path d="M2 12.5S10 2 21 2s19 10.5 19 10.5S32 23 21 23 2 12.5 2 12.5Z" stroke="currentColor" stroke-width="2.5"/><circle cx="21" cy="12.5" r="7" fill="currentColor"/><circle cx="21" cy="12.5" r="3" fill="#f7f7f2"/></svg></span><span class="selection-mark" aria-hidden="true">✓</span></span>
+              <span class="station-name">Bandeirantes</span>
+              <span class="station-card-detail">85,7 FM <span aria-hidden="true">·</span> Campinas</span>
+              <span class="station-card-bottom">Notícias e esportes <span aria-hidden="true">↗</span></span>
+            </button>
+            <button class="station-card" data-station="jp" aria-pressed="false" type="button">
+              <span class="station-card-top"><span class="station-monogram" aria-hidden="true">JP</span><span class="selection-mark" aria-hidden="true">✓</span></span>
+              <span class="station-name">Jovem Pan News</span>
+              <span class="station-card-detail">100,3 FM <span aria-hidden="true">·</span> Campinas</span>
+              <span class="station-card-bottom">Notícias e debates <span aria-hidden="true">↗</span></span>
+            </button>
+            <button class="station-card" data-station="difusora" aria-pressed="false" type="button">
+              <span class="station-card-top"><span class="station-monogram" aria-hidden="true">DIF</span><span class="selection-mark" aria-hidden="true">✓</span></span>
+              <span class="station-name">Difusora Jundiaí</span>
+              <span class="station-card-detail">Jundiaí e região <span aria-hidden="true">·</span> Web</span>
+              <span class="station-card-bottom">Informação e esportes <span aria-hidden="true">↗</span></span>
+            </button>
+          </div>
+          <div class="sidebar-note"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a7 7 0 0 0-4 12.75V19h8v-3.25A7 7 0 0 0 12 3ZM9 22h6M9 12l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><p>Feito para ler.<br /><strong>O som é opcional.</strong></p></div>
+          <p class="experimental-note">Este é um projeto experimental de acessibilidade. As legendas são automáticas e podem conter erros.</p>
+        </aside>
+
+        <section id="reader-panel" class="reader-panel" aria-label="Painel de legendas" tabindex="-1">
+          <div id="reading-bar" class="reading-bar" hidden>
+            <strong>Modo de leitura</strong>
+            <button id="exit-reading-btn" class="button button-secondary" type="button">Sair do modo de leitura</button>
+          </div>
+          <div id="reading-tabs" class="reading-tabs" role="group" aria-label="Exibição das legendas" hidden>
+            <button id="current-caption-btn" type="button" aria-pressed="true">Legenda atual</button>
+            <button id="reading-history-btn" type="button" aria-pressed="false">Histórico</button>
+          </div>
+          <div class="reader-header">
+            <div class="reader-station"><p id="station-frequency" class="eyebrow reader-kicker">99,1 FM · CAMPINAS</p><h2 id="station-title">CBN Campinas</h2><p id="station-description">Jornalismo, notícias e conversas da nossa região.</p></div>
+            <a id="station-link" class="external-link" href="https://cbncampinas.com.br/" target="_blank" rel="noopener">Site da rádio <span aria-hidden="true">↗</span></a>
+          </div>
+
+          <div class="playback-controls">
+            <div class="start-controls">
+              <button id="start-btn" class="button button-primary" type="button"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m7 4 9 6-9 6V4Z" fill="currentColor"/></svg>Iniciar legendas</button>
+              <button id="stop-btn" class="button button-primary" type="button" hidden><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="5" y="5" width="10" height="10" rx="1" fill="currentColor"/></svg>Parar legendas</button>
+              <button id="demo-btn" class="button button-secondary" type="button">Ver demonstração</button>
+            </div>
+            <button id="sound-btn" class="sound-button" type="button" aria-pressed="false"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M9 4 5 7H2v6h3l4 3V4ZM13 7l5 6m0-6-5 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Som desligado</button>
+          </div>
+
+          <div class="model-settings">
+            <label for="model-select">Reconhecimento</label>
+            <select id="model-select" aria-describedby="model-note">
+              <option value="base" selected>Equilibrado · uso diário</option>
+              <option value="small">Precisão ampliada · computador · ~280 MB</option>
+              <option value="tiny">Mais leve · aparelhos mais lentos</option>
+            </select>
+            <p id="model-note">Precisão ampliada é experimental e recomendada para computador. Pode aumentar o atraso; se não acompanhar, use Equilibrado. Primeiro uso: download no aparelho; depois, cache.</p>
+          </div>
+
+          <div class="reader-toolbar">
+            <div class="caption-status"><span id="status-dot" class="status-dot" data-state="idle" aria-hidden="true"></span><span id="status-text" role="status">Pronto para começar</span><span class="toolbar-divider" aria-hidden="true"></span><span id="elapsed" class="elapsed" aria-label="Tempo de sessão">00:00</span></div>
+            <div class="reading-controls" aria-label="Ajustes de leitura">
+              <button id="reading-btn" class="reading-button" type="button" aria-pressed="false">Modo de leitura</button>
+              <div class="font-controls"><button id="font-down" class="icon-button font-button" type="button" aria-label="Diminuir tamanho das legendas">A−</button><span id="font-value" class="font-value" aria-label="Tamanho das legendas">26 px</span><button id="font-up" class="icon-button font-button" type="button" aria-label="Aumentar tamanho das legendas">A+</button></div>
+              <button id="contrast-btn" class="icon-button" type="button" aria-label="Ativar alto contraste" aria-pressed="false" title="Alto contraste"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 3.5a6.5 6.5 0 0 1 0 13v-13Z" fill="currentColor"/></svg></button>
+              <button id="fullscreen-btn" class="icon-button" type="button" aria-label="Expandir painel de legendas" title="Tela cheia"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 3H3v4m10-4h4v4M3 13v4h4m10-4v4h-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+
+          <div class="reader-canvas">
+            <div class="canvas-label"><span id="mode-label">LEGENDA AUTOMÁTICA · EXPERIMENTAL</span><span class="language-tag">PT-BR</span></div>
+            <div id="progress-panel" class="progress-panel" hidden><div class="progress-heading"><strong>Preparando as legendas</strong><span aria-hidden="true">↓</span></div><progress id="model-progress" max="100" value="0" aria-label="Download do modelo de transcrição"></progress><p id="progress-detail">Carregando o modelo para este dispositivo…</p></div>
+            <div id="error-panel" class="error-panel" role="alert" hidden><strong>Não foi possível iniciar.</strong><p id="error-message"></p><button id="retry-btn" class="button button-secondary" type="button">Tentar novamente</button></div>
+            <div id="transcript" class="transcript" tabindex="0" aria-label="Transcrição da rádio">
+              <div id="empty-state" class="empty-state"><div class="empty-symbol" aria-hidden="true"><svg viewBox="0 0 58 52" fill="none"><path d="M12 7h34a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6H25L12 51v-8a6 6 0 0 1-6-6V13a6 6 0 0 1 6-6Z" stroke="currentColor" stroke-width="1.6"/><path d="M25 19a8 8 0 1 0 0 14m18-14a8 8 0 1 0 0 14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div><h3>Abra espaço para as palavras.</h3><p>Inicie as legendas para acompanhar o que está<br class="desktop-break" /> sendo falado na rádio, em português.</p><span class="empty-footnote">Ou explore primeiro a demonstração.</span></div>
+              <div id="transcript-list" role="log" aria-label="Trechos transcritos" aria-live="polite" aria-relevant="additions"></div>
+              <p id="draft-text" class="caption-draft" aria-label="Legenda atual" hidden></p>
+            </div>
+            <p id="pending-text" class="pending-text" aria-live="polite"></p>
+            <div class="live-controls"><button id="scroll-btn" class="follow-button" type="button" aria-pressed="true"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v11m-4-4 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Pausar rolagem automática</button><button id="jump-btn" class="jump-button" type="button" hidden>Voltar ao vivo <span aria-hidden="true">↓</span></button></div>
+          </div>
+
+          <div class="reader-footer"><span id="caption-count" class="caption-count">0 trechos</span><div class="history-actions"><button id="clear-btn" class="text-button" type="button">Limpar</button><span class="toolbar-divider" aria-hidden="true"></span><button id="download-btn" class="text-button" type="button"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3v9m-3-3 3 3 3-3M4 13v4h12v-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Salvar texto</button></div></div>
+        </section>
+      </section>
+
+      <section id="sobre" class="about-section page-width" aria-labelledby="about-title"><div><p class="eyebrow">ACESSIBILIDADE QUE APROXIMA</p><h2 id="about-title">Campinas primeiro.<br />O Brasil, no horizonte.</h2></div><p>Informação também é pertencimento. Este piloto começa com rádios de Campinas e a ideia de tornar mais conversas acessíveis para pessoas surdas, por meio da leitura. Depois de testar e aprender por aqui, o próximo passo é chegar a outras cidades.</p><span class="about-mark" aria-hidden="true">↗</span></section>
+    </main>
+
+    <footer class="site-footer page-width"><p>Feito para acompanhar com os olhos.</p><span>Marcos Arruda <span class="footer-dot" aria-hidden="true">·</span> Rádio em Texto</span></footer>
+
+    <dialog id="help-dialog" class="help-dialog" aria-labelledby="help-title"><div class="dialog-header"><p class="eyebrow">RÁDIO EM TEXTO</p><button id="close-help" class="icon-button" type="button" aria-label="Fechar ajuda">✕</button></div><h2 id="help-title">Do áudio à leitura.</h2><p class="dialog-intro">Escolha uma rádio, inicie as legendas e acompanhe a conversa. Você pode manter o som desligado.</p><ol class="help-steps"><li><strong>Na primeira vez, um pequeno preparo.</strong><p>O navegador baixa um modelo de transcrição de aproximadamente 60–110 MB nas opções leves, ou cerca de 280 MB em Precisão ampliada. O tempo depende da sua conexão; os arquivos podem ficar no cache para os próximos acessos.</p></li><li><strong>O áudio vem diretamente da rádio.</strong><p>Você não precisa ligar o microfone. As falas são processadas no seu dispositivo. Equilibrado e Mais leve começam com 6 segundos de áudio; Precisão ampliada usa 10. As palavras aparecem diretamente na área das legendas durante o reconhecimento. O atraso depende do aparelho.</p></li><li><strong>Leia do seu jeito.</strong><p>Use Modo de leitura para ver só a legenda atual em letras grandes. Consulte Histórico para rever os trechos sem interromper a transmissão. Você também pode ajustar as letras, o contraste ou expandir o painel. Para rever um trecho, use “Pausar rolagem automática”.</p></li></ol><div class="help-note"><strong>Um piloto para testar e melhorar.</strong><p>As legendas são automáticas e experimentais: podem trocar palavras ou perder trechos, especialmente com música e vozes sobrepostas. A demonstração usa conteúdo fictício e é identificada na tela.</p></div><p class="dialog-privacy">O histórico fica apenas nesta sessão. Use “Salvar texto” se quiser guardar a transcrição antes de sair.</p></dialog>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
