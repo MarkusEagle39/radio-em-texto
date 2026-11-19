@@ -6,7 +6,7 @@ const state = {
   captions: [], following: true, sound: false, size: 26,
   reading: false, readingHistory: false, previousFollowing: true,
   worker: null, workerReady: false, workerBusy: false, init: null,
-  audio: null, context: null, capture: null, gain: null,
+  audio: null, context: null, capture: null, gain: null, streamSource: null,
   samples: [], sampleCount: 0, audioTime: 0, queue: [], lastDelay: null,
   startedAt: 0, clock: null, demoTimer: null, lastText: '', lastAudioTime: null,
   progressFiles: new Map(), lastLevel: Date.now(), waitingTimer: null,
@@ -144,6 +144,8 @@ function stop({ keepStatus = false } = {}) {
   clearInterval(state.waitingTimer);
   state.clock = null;
   state.waitingTimer = null;
+  state.streamSource?.stop();
+  state.streamSource = null;
   if (state.audio) {
     state.audio.onerror = null;
     state.audio.onwaiting = null;
@@ -320,9 +322,29 @@ function collectSamples(samples) {
 async function connectRadio(session) {
   const AudioContextClass = window.AudioContext || window.webkitAudioContext;
   if (!AudioContextClass || !window.AudioWorkletNode || !window.Worker) throw new Error('unsupported');
-  const context = new AudioContextClass({ sampleRate: 16000 });
+  const safari = /AppleWebKit/.test(navigator.userAgent) && !/Chrome|Chromium|Edg\//.test(navigator.userAgent);
+  const context = new AudioContextClass(safari ? undefined : { sampleRate: 16000 });
   state.context = context;
   await context.resume();
+  if (state.session !== session) return;
+  // Safari can play a live AAC stream while its MediaElementAudioSourceNode
+  // supplies only zero samples. Decode the CORS-enabled stream directly there.
+  if (safari) {
+    const { createDecodedStream } = await import('./stream-source.js');
+    if (state.session !== session) return;
+    const stream = createDecodedStream(context, STATIONS[state.station].stream, {
+      onSamples: samples => {
+        if (state.session === session) collectSamples(resample(samples, context.sampleRate));
+      },
+      onError: () => {
+        if (state.session === session) fail('A transmissão foi interrompida. Tente iniciar novamente ou escolha outra rádio.');
+      },
+    });
+    state.streamSource = stream;
+    state.gain = stream.gain;
+    await stream.ready;
+    return;
+  }
   const audio = new Audio();
   audio.crossOrigin = 'anonymous';
   audio.preload = 'none';

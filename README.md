@@ -18,7 +18,7 @@ Abra a URL local mostrada no terminal. Para publicar, sirva a pasta `dist` por H
 
 ## O que funciona
 
-- CBN Campinas, Bandeirantes Campinas, Jovem Pan News Campinas e Difusora Jundiaí: áudio direto dos players oficiais, processado com Web Audio e AudioWorklet.
+- CBN Campinas, Bandeirantes Campinas, Jovem Pan News Campinas e Difusora Jundiaí: áudio direto dos players oficiais, processado com Web Audio e AudioWorklet. No Safari, o fluxo AAC/MP3 é decodificado em um worker antes de alimentar a captura, evitando o silêncio observado com MediaElementAudioSourceNode.
 - Transcrição local em um Web Worker com Transformers.js 3.8.1, Whisper multilíngue ONNX, português e tarefa `transcribe`.
 - Modelo `base` por padrão, opção `tiny` para dispositivos mais lentos e `small` em Precisão ampliada, recomendada para computador. O primeiro uso baixa aproximadamente 60–110 MB nas opções leves ou cerca de 280 MB em Precisão ampliada. Os modelos podem ser reaproveitados pelo cache do navegador.
 - Som desligado por padrão sem interromper a captura para reconhecimento.
@@ -79,3 +79,9 @@ O botão Modo de leitura expande o painel para a área disponível e destaca som
 ## Áudios sintéticos da avaliação
 
 Os arquivos de áudio não são incluídos neste repositório. No macOS, com a voz Luciana em português brasileiro disponível, execute `node scripts/generate-precision-fixtures.mjs` para gerar os três WAVs de teste localmente, sem reprodução sonora. Em outros sistemas, é possível fornecer WAVs mono de 16 kHz com os textos documentados em `tests/precision/results.md`. A avaliação manual usa esses áudios; `npm test` não depende deles.
+
+## Captura no Safari
+
+Em 19/11/2026, o Safari deste Mac conectou à CBN, mas a captura pelo elemento de áudio retornou silêncio. A alternativa lê o mesmo fluxo público com CORS, usa decodificadores AAC/MP3 em WebAssembly em um worker separado e reproduz os blocos pelo AudioContext e AudioWorklet. A captura segue o tempo de reprodução, o som permanece opcional e parar/trocar de emissora encerra o worker e o áudio agendado. CBN Campinas e Bandeirantes foram verificadas com legendas reais no Safari deste aparelho; isso não garante compatibilidade com todas as versões ou aparelhos.
+
+Dependências carregadas sob demanda no Safari pelo jsDelivr: [@wasm-audio-decoders/aac 0.0.1](https://github.com/eshaz/wasm-audio-decoders/tree/main/src/aac) e [mpg123-decoder 1.0.3](https://github.com/eshaz/wasm-audio-decoders/tree/main/src/mpg123-decoder). As licenças dos decodificadores e de suas bibliotecas estão documentadas no projeto de origem.
